@@ -1,0 +1,39 @@
+<Map>
+	<Devices>
+		<Device model="8223" deviceNo="1">
+			<Port name="faa", type="DigitalInput", portNo="1", comment="1/22-Light Green/Black (-)", negateValue="Factory Alarm Arm Output"/>
+			<Port name="gwr", type="DigitalInput", portNo="2", comment="2/22-Blue/White (-)", negateValue="GWR/Status  Output"/>
+			<Port name="lock", type="DigitalInput", portNo="3", comment="3/22-Green/Black (-)", negateValue="Lock Output"/>
+			<Port name="trunk_rel", type="DigitalInput", portNo="4", comment="4/22-Red/White (-)", negateValue="Trunk release Output"/>
+			<Port name="horn_Out", type="DigitalInput", portNo="5", comment="5/22-Brown/Black (-)", negateValue="Horn Output"/>
+			<Port name="aux_1_Neg", type="DigitalInput", portNo="6", comment="6/22-Brown/White (-)", negateValue="Aux1 Neg Output"/>
+			<Port name="aux_1_Pos", type="DigitalInput", portNo="9", comment="7/22-White (+)", negateValue="Aux1 Pos Output"/>
+			<Port name="aux_4_Out", type="DigitalInput", portNo="10", comment="8/22-Violet/Black (+)", negateValue="Aux4 Output"/>
+			<Port name="unlock", type="DigitalInput", portNo="7", comment="9/22-Blue/Black (-)", negateValue="Unlock Output"/>
+			<Port name="fad", type="DigitalInput", portNo="8", comment="10/22-Light Blue/Black (-)", negateValue="Factory Alarm Disarm Output"/>
+			<Port name="siren", type="DigitalInput", portNo="11", comment="11/22-Brown/Red (+)", negateValue="Siren Output"/>
+			<Port name="relay1", type="DigitalInput", portNo="13", comment="3/12-Blue Relay COM", negateValue="Programmable"/>
+			<Port name="relay3", type="DigitalInput", portNo="15", comment="5/12-White Relay COM", negateValue="Parking light"/>
+			<Port name="relay2", type="DigitalInput", portNo="14", comment="8/12-Light Green Relay COM", negateValue="Programmable"/>
+			<Port name="flex_relay", type="DigitalInput", portNo="20", comment="4/10-Pink/White Selectable", negateValue="Flex Relay Output"/>
+			<Port name="starter_kill", type="DigitalInput", portNo="16", comment="6/10-Green N/A", negateValue="Starter Kill Key side"/>
+			<Port name="starter", type="DigitalInput", portNo="19", comment="7/10-Violet Selectable", negateValue="Starter Output"/>
+			<Port name="accessory", type="DigitalInput", portNo="18", comment="8/10-Orange Selectable", negateValue="Accessory Output"/>
+			<Port name="ignition _out", type="DigitalInput", portNo="17", comment="10/10-Pink (+)", negateValue="Ignition Output"/>
+		</Devices>
+		<Device model="8224" deviceNo="2">
+			<Port name="ignition", type="DigitalOutput", portNo="1", comment="12/22-Pink (+)", negateValue="Ignition Sense Input"/>
+			<Port name="door_pos", type="DigitalOutput", portNo="2", comment="13/22-Violet (+)", negateValue="Door Sense Input"/>
+			<Port name="brake", type="DigitalOutput", portNo="3", comment="14/22-Brown (+)", negateValue="Brake Sense Input"/>
+			<Port name="activation_input", type="DigitalOutput", portNo="5", comment="15/22-White/Blue (-)", negateValue="Activation Input"/>
+			<Port name="trigger", type="DigitalOutput", portNo="6", comment="16/22-Red/Blue (-)", negateValue="Aux3 Input"/>
+			<Port name="e_brake", type="DigitalOutput", portNo="7", comment="17/22-Black/White (-)", negateValue="Handbrake Sense Input"/>
+			<Port name="instant", type="DigitalOutput", portNo="4", comment="18/22-Orange/Black (+)", negateValue="Instant Trigger Input"/>
+			<Port name="trunk", type="DigitalOutput", portNo="8", comment="19/22-Blue (-)", negateValue="Trunk Sense Input"/>
+			<Port name="door", type="DigitalOutput", portNo="9", comment="20/22-Green (-)", negateValue="Door Sense Input"/>
+			<Port name="hood", type="DigitalOutput", portNo="10", comment="21/22-Gray (-)", negateValue="Hood Pin input"/>
+		</Devices>
+	</Devices>
+	<Groups />
+	<BoolAnalogs/>
+</Map>
