@@ -2,12 +2,19 @@
 
 import csv
 import xlrd
+import tkinter
+from tkinter import filedialog
 
 
 #file = open('DS4 connection.csv')
 #csv_line = csv.reader(file)
 
-book = xlrd.open_workbook("DS4 connection.xlsx")
+root = tkinter.Tk()
+root.withdraw()
+
+file_path = filedialog.askopenfilename()
+
+book = xlrd.open_workbook(file_path)
 sheet = book.sheet_by_index(0)
 output_file = open('DS4-Analog Harness.xml','w')
 x_line = []
@@ -31,7 +38,7 @@ output_file.write("\t\t</Devices>\n")
 
 #file.close()
 output_file.write("\t\t<Device model=\"8224\" deviceNo=\"2\">\n")
-file = open('DS4 connection.csv')
+file = open(file_path)
 csv_line = csv.reader(file)
 
 for row in range(sheet.nrows):
