@@ -3,6 +3,7 @@
 from math import ceil
 from random import shuffle
 from tkinter import *
+import time
 
 
 class Player:
@@ -92,10 +93,50 @@ class Player:
             app.tx.insert(END,  " \n\n")
 
 
+class MyTymer:
+    def __init__(self):
+        pass
+
+    @classmethod
+    def start_timer(self, xtime):
+        self.pause = False
+        for t in range(xtime, -1, -1):
+            if self.pause:
+                break
+            sf = "{:02d}:{:02d}".format(*divmod(t, 60))
+            app.time_str.set(sf)
+            win1.update()
+            # delay one second
+            time.sleep(1)
+
+    @classmethod
+    def pause_timer(self):
+        self.hold_timer = int(app.time_str.get()[0:2]) * 60 + int(app.time_str.get()[3:5])
+        print(self.hold_timer)
+        self.pause = True
+
+
+    @classmethod
+    def resume_timer(self):
+        self.pause = False
+        for t in range(self.hold_timer, -1, -1):
+            if self.pause:
+                break
+            sf = "{:02d}:{:02d}".format(*divmod(t, 60))
+            app.time_str.set(sf)
+            win1.update()
+            # delay one second
+            time.sleep(1)
+        pass
+
+    def reset_timer(self):
+        pass
+
+
 class App(Frame):
     def __init__(self, win1, **kwargs):
         Frame.__init__(self, **kwargs)
-
+        self.time_str = StringVar()
         self.ent1 = Entry()
         self.ent2 = Entry()
         self.ent3 = Entry()
@@ -105,6 +146,17 @@ class App(Frame):
         but1 = Button(win1, text="Add player", command=lambda: player.add_player(self.tx, self.ent1))
         but2 = Button(win1, text="Delete all", command=lambda: player.del_all_text())
         but3 = Button(win1, text="Create Table", command=lambda: player.create_table())
+        but4 = Button(win1, text="Start",command=lambda: MyTymer.start_timer(1800))
+        but5 = Button(win1, text="Pause", command=lambda: MyTymer.pause_timer())
+        but6 = Button(win1, text="Resume", command=lambda: MyTymer.resume_timer())
+        self.label_font = ('helvetica', 40)
+        lab3 = Label(win1, textvariable=self.time_str, font=self.label_font, bg='white',
+                 fg='blue', relief='raised', bd=3)
+        lab3.grid(row=5, rowspan=3, padx=5, pady=5)
+        but4.grid(row=5, column=1)
+        but5.grid(row=6, column=1)
+        but6.grid(row=7, column=1)
+
         lab1.grid(row=0, column=0, stick=E)
         self.ent1.grid(row=0, column=1, padx=5, sticky=W)
         but1.grid(row=0, column=2, padx=5, sticky=W)
@@ -116,7 +168,7 @@ class App(Frame):
         #print("loop")
 
 player = Player()
-
+xtimer = MyTymer()
 win1 = Tk()
 app = App(win1)
 win1.mainloop()

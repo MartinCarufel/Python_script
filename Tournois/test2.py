@@ -12,7 +12,7 @@ class Player:
         return self._ent1
 
     def _set_ent1(self, new):
-        print("Add player")
+        #print("Add player")
         self._ent1 = new
 
     ent1 = property(_get_ent1, _set_ent1)
@@ -38,7 +38,7 @@ class Player:
         #but2 = Button(win1, text=tx_aff.get(), command=lambda: edit_player(name.get()))
         #but2.pack()
         #print(type(but2))
-        print(self.p_list)
+        #print(self.p_list)
 
 class App(Frame):
     def __init__(self, win1, **kwargs):
@@ -51,7 +51,7 @@ class App(Frame):
         ent1.pack()
         but1.pack()
         tx.pack()
-        print("loop")
+        #print("loop")
 
 
 player = Player()
