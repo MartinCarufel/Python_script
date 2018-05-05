@@ -56,7 +56,7 @@ class Player:
         #but2 = Button(win1, text=tx_aff.get(), command=lambda: edit_player(name.get()))
         #but2.pack()
         #print(type(but2))
-        print(self.p_list)
+        #print(self.p_list)
 
     def del_all_text(self):
             self.tx.delete('1.0', END)
@@ -64,10 +64,10 @@ class Player:
 
     def create_table(self):
         shuffle(player.p_list)
-        print(player.p_list)
+        #print(player.p_list)
         d_copy = list(player.p_list)
         nb_par_table = int(app.ent2.get())
-        print(nb_par_table)
+        #print(nb_par_table)
 
 
         table = {"table" + str(i + 1): "" for i in range(ceil(len(player.p_list) / nb_par_table))}
@@ -94,9 +94,9 @@ class Player:
             temp = {table_l[i]: add_value}
             table.update(temp)
 
-        print(table_l)
-        print(table)
-        print(remain_item)
+        #print(table_l)
+        #print(table)
+        #print(remain_item)
 
         app.tx.delete(1.0, END)
         for i, j in table.items():
@@ -140,7 +140,7 @@ class MyTymer:
     @classmethod
     def pause_timer(self):
         self.hold_timer = int(app.time_str.get()[0:2]) * 60 + int(app.time_str.get()[3:6])
-        print(self.hold_timer)
+        #print(self.hold_timer)
         self.pause = True
 
 
@@ -187,7 +187,8 @@ class App(Frame):
         but1 = Button(win1, text="Add player", command=lambda: player.add_player(self.tx, self.ent1))
         but2 = Button(win1, text="Delete all", command=lambda: player.del_all_text())
         but3 = Button(win1, text="Create Table", command=lambda: player.create_table())
-        but4 = Button(win1, text="Start", command=lambda: MyTymer.start_timer(int(self.ent3.get())))
+        but4 = Button(win1, text="Start", command=lambda: MyTymer.start_timer(int(self.ent3.get())*60))
+        #but4 = Button(win1, text="Start", command=lambda: MyTymer.start_timer(1800))
         but5 = Button(win1, text="Pause", command=lambda: MyTymer.pause_timer())
         but6 = Button(win1, text="Resume", command=lambda: MyTymer.resume_timer())
 
