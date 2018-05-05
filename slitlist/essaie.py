@@ -1,44 +1,36 @@
-# coding: utf-8
-
-''' tk_counter_down101.py
-count down seconds from a given minute value
-using the Tkinter GUI toolkit that comes with Python
-tested with Python27 and Python33
-'''
-try:
-    # Python2
-    import Tkinter as tk
-except ImportError:
-    # Python3
-    import tkinter as tk
+import random
+import sys
+from threading import Thread
 import time
 
+class Afficheur(Thread):
 
-def count_down():
-    # start with 2 minutes --> 120 seconds
-    for t in range(120, -1, -1):
-        # format as 2 digit integers, fills with zero to the left
-        # divmod() gives minutes, seconds
-        sf = "{:02d}:{:02d}".format(*divmod(t, 60))
-        # print(sf)  # test
-        time_str.set(sf)
-        root.update()
-        # delay one second
-        time.sleep(1)
+    """Thread chargé simplement d'afficher une lettre dans la console."""
 
+    def __init__(self, lettre):
+        Thread.__init__(self)
+        self.lettre = lettre
 
-# create root/main window
-root = tk.Tk()
-time_str = tk.StringVar()
-# create the time display label, give it a large font
-# label auto-adjusts to the font
-label_font = ('helvetica', 40)
-Label(root, textvariable=time_str, font=label_font, bg='white',
-         fg='blue', relief='raised', bd=3).pack(fill='x', padx=5, pady=5)
-# create start and stop buttons
-# pack() positions the buttons below the label
-tk.Button(root, text='Count Start', command=count_down).pack()
-# stop simply exits root window
-tk.Button(root, text='Count Stop', command=root.destroy).pack()
-# start the GUI event loop
-root.mainloop()
+    def x_run(self):
+        """Code à exécuter pendant l'exécution du thread."""
+        i = 0
+        while i < 20:
+            sys.stdout.write(self.lettre)
+            sys.stdout.flush()
+            attente = 0.2
+            attente += random.randint(1, 60) / 100
+            time.sleep(attente)
+            i += 1
+
+# Création des threads
+thread_1 = Afficheur("1")
+thread_2 = Afficheur("2")
+
+# Lancement des threads
+thread_1.start()
+thread_2.start()
+
+thread_1.x_run()
+# Attend que les threads se terminent
+thread_1.join()
+thread_2.join()
