@@ -8,13 +8,19 @@ import winsound
 from threading import Thread
 
 
-class Alarm(Thread):
+# class Alarm(Thread):
+#     def __init__(self):
+#         Thread.__init__(self)
+#
+#     def play_alarm(self):
+#         winsound.PlaySound('426408__greek555__wake-me-up.wav', winsound.SND_FILENAME)
+
+class Alarm():
     def __init__(self):
-        Thread.__init__(self)
+        pass
 
     def play_alarm(self):
         winsound.PlaySound('426408__greek555__wake-me-up.wav', winsound.SND_FILENAME)
-
 
 
 
@@ -120,21 +126,21 @@ class MyTymer:
                 break
             sf = "{:02d}:{:02d}".format(*divmod(t, 60))
             app.time_str.set(sf)
+            app.but4.config(state=DISABLED)
             win1.update()
             # delay one second
             time.sleep(1)
 
         if time_remain == 0:
-        #while self.alarm_on:
-            for i in range(3):
-                #winsound.PlaySound('426408__greek555__wake-me-up.wav',winsound.SND_FILENAME)
-                thraed_1 = Alarm()
-                thraed_1.start()
-                thraed_1.play_alarm()
-
-                stop_alarm = input()
-                if stop_alarm != "":
-                    break
+            for i in range(1):
+           #winsound.PlaySound('426408__greek555__wake-me-up.wav',winsound.SND_FILENAME)
+                al_1 = Alarm()
+                #al_1.start()
+                al_1.play_alarm()
+                app.but4.config(state=NORMAL)
+                #stop_alarm = input()
+                #if stop_alarm != "":
+                    #break
 
 
     @classmethod
@@ -187,7 +193,7 @@ class App(Frame):
         but1 = Button(win1, text="Add player", command=lambda: player.add_player(self.tx, self.ent1))
         but2 = Button(win1, text="Delete all", command=lambda: player.del_all_text())
         but3 = Button(win1, text="Create Table", command=lambda: player.create_table())
-        but4 = Button(win1, text="Start", command=lambda: MyTymer.start_timer(int(self.ent3.get())*60))
+        self.but4 = Button(win1, text="Start", command=lambda: MyTymer.start_timer(int(self.ent3.get())*1))
         #but4 = Button(win1, text="Start", command=lambda: MyTymer.start_timer(1800))
         but5 = Button(win1, text="Pause", command=lambda: MyTymer.pause_timer())
         but6 = Button(win1, text="Resume", command=lambda: MyTymer.resume_timer())
@@ -200,7 +206,7 @@ class App(Frame):
         but1.grid(row=0, column=2, padx=5, sticky=W)
         but2.grid(row=0, column=3, rowspan=4, padx=10, ipady=10, ipadx=20, sticky=W)
         but3.grid(row=3, column=2, sticky=W)
-        but4.grid(row=5, column=5)
+        self.but4.grid(row=5, column=5)
         but5.grid(row=5, column=6)
         but6.grid(row=5, column=7)
 
