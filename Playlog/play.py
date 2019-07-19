@@ -7,14 +7,13 @@ from CANInterface import CANInterface
 
 
 log_path = sys.argv[1]
-
 can_device = CANInterface()
-
-baudrate = can_device.Get_BaudRate()
+can_device.CAN_Connect()
+baudrate = can_device.CAN_Get_BaudRate()
 print baudrate
 
 log_to_play = string.replace(log_path, '\\', '/')
 print log_to_play
-can_device.Play_Log_File(log_to_play)
+can_device.CAN_Play_Log_File(log_to_play)
 
-can_device.CAN_Disconnected()
+can_device.CAN_Disconnect()
