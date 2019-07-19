@@ -30,10 +30,10 @@ for row in range(sheet.nrows):
     row_list = sheet.row_values(row)
     if row_list [6] == 'SeaDAC ISO 8223':
         output_file.write(
-            "\t\t\t<Port name=\"{}\", type=\"{}\", portNo=\"{}\", comment=\"{}-{} {} {}\", negateValue=\"{}\"/>\n"
+            "\t\t\t<Port name=\"{}\" type=\"{}\" portNo=\"{}\" comment=\"{}-{} {} {}\" negateValue=\"{}\"/>\n"
                 .format(row_list[10],row_list[7], int(row_list[9]),row_list[0],row_list[4],row_list[3],row_list[5],
                 row_list[8]))
-output_file.write("\t\t</Devices>\n")
+output_file.write("\t\t</Device>\n")
 
 
 #file.close()
@@ -45,11 +45,11 @@ for row in range(sheet.nrows):
     row_list = sheet.row_values(row)
     if row_list [6] == "SeaDAC ISO 8224":
         output_file.write(
-            "\t\t\t<Port name=\"{}\", type=\"{}\", portNo=\"{}\", comment=\"{}-{} {} {}\", negateValue=\"{}\"/>\n".format(
+            "\t\t\t<Port name=\"{}\" type=\"{}\" portNo=\"{}\" comment=\"{}-{} {} {}\" negateValue=\"{}\"/>\n".format(
                 row_list[10], row_list[7], int(row_list[9]), row_list[0], row_list[4], row_list[3], row_list[5],
                 row_list[8]))
 
-output_file.write("\t\t</Devices>\n")
+output_file.write("\t\t</Device>\n")
 
 output_file.write("\t</Devices>\n")
 output_file.write("\t<Groups />\n")
