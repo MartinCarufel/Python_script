@@ -1,0 +1,27 @@
+import sys
+# sys.path.append(r'C:\Python24\Lib')
+sys.path.append(r'C:\Users\martin.carufel\AppData\Local\Programs\Python\Python37-32\Lib\site-packages')
+
+import clr
+clr.AddReference("System.Drawing")
+clr.AddReference("System.Windows.Forms")
+
+from System.Drawing import Point
+from System.Windows.Forms import Application, Button, Form, Label
+
+class HelloWorldForm(Form):
+
+    def __init__(self):
+        self.Text = 'Hello World'
+        
+        button = Button()
+        button.Text = "Click Me"
+        button.Location = Point(50, 100)
+        button.Click += self.buttonPress
+        self.Controls.Add(button)
+        
+    def buttonPress(self, sender, args)
+        print('allo')
+        
+form = HelloWorldForm()
+Application.Run(form)
