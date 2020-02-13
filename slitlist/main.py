@@ -3,6 +3,25 @@
 from math import ceil
 from random import shuffle
 from tkinter import *
+import time
+import winsound
+from threading import Thread
+
+
+# class Alarm(Thread):
+#     def __init__(self):
+#         Thread.__init__(self)
+#
+#     def play_alarm(self):
+#         winsound.PlaySound('426408__greek555__wake-me-up.wav', winsound.SND_FILENAME)
+
+class Alarm():
+    def __init__(self):
+        pass
+
+    def play_alarm(self):
+        winsound.PlaySound('426408__greek555__wake-me-up.wav', winsound.SND_FILENAME)
+
 
 
 class Player:
@@ -43,7 +62,7 @@ class Player:
         #but2 = Button(win1, text=tx_aff.get(), command=lambda: edit_player(name.get()))
         #but2.pack()
         #print(type(but2))
-        print(self.p_list)
+        #print(self.p_list)
 
     def del_all_text(self):
             self.tx.delete('1.0', END)
@@ -51,10 +70,10 @@ class Player:
 
     def create_table(self):
         shuffle(player.p_list)
-        print(player.p_list)
+        #print(player.p_list)
         d_copy = list(player.p_list)
-        nb_par_table = int(app.ent3.get())
-        print(nb_par_table)
+        nb_par_table = int(app.ent2.get())
+        #print(nb_par_table)
 
 
         table = {"table" + str(i + 1): "" for i in range(ceil(len(player.p_list) / nb_par_table))}
@@ -81,9 +100,9 @@ class Player:
             temp = {table_l[i]: add_value}
             table.update(temp)
 
-        print(table_l)
-        print(table)
-        print(remain_item)
+        #print(table_l)
+        #print(table)
+        #print(remain_item)
 
         app.tx.delete(1.0, END)
         for i, j in table.items():
@@ -92,31 +111,113 @@ class Player:
             app.tx.insert(END,  " \n\n")
 
 
+class MyTymer:
+    def __init__(self):
+        pass
+
+    @classmethod
+    def start_timer(self, xtime):
+        self.pause = False
+        self.alarm_on = True
+        #xtime = int(xtime.get())
+        for t in range(xtime, -1, -1):
+            time_remain = t
+            if self.pause:
+                break
+            sf = "{:02d}:{:02d}".format(*divmod(t, 60))
+            app.time_str.set(sf)
+            app.but4.config(state=DISABLED)
+            win1.update()
+            # delay one second
+            time.sleep(1)
+
+        if time_remain == 0:
+            for i in range(1):
+           #winsound.PlaySound('426408__greek555__wake-me-up.wav',winsound.SND_FILENAME)
+                al_1 = Alarm()
+                #al_1.start()
+                al_1.play_alarm()
+                app.but4.config(state=NORMAL)
+                #stop_alarm = input()
+                #if stop_alarm != "":
+                    #break
+
+
+    @classmethod
+    def pause_timer(self):
+        self.hold_timer = int(app.time_str.get()[0:2]) * 60 + int(app.time_str.get()[3:6])
+        #print(self.hold_timer)
+        self.pause = True
+
+
+    @classmethod
+    def resume_timer(self):
+        self.pause = False
+        MyTymer.start_timer(self.hold_timer)
+        # for t in range(self.hold_timer, -1, -1):
+        #     if self.pause:
+        #         break
+        #     sf = "{:02d}:{:02d}".format(*divmod(t, 60))
+        #     app.time_str.set(sf)
+        #     win1.update()
+        #     # delay one second
+        #     time.sleep(1)
+
+
+# class Stop_alarm(Frame):
+#     def __init__(self, win2, **kwargs):
+#         Frame.__init__(self, **kwargs)
+#         self.time_str = StringVar()
+#         self.label_font = ('helvetica', 60)
+#         self.tx = Text(win2)
+
+
 class App(Frame):
     def __init__(self, win1, **kwargs):
         Frame.__init__(self, **kwargs)
+        self.time_str = StringVar()
+        self.label_font = ('helvetica', 160)
+        self.tx = Text(win1)
+
+        self.tx.grid(row=4, column=0, columnspan=4)
 
         self.ent1 = Entry()
         self.ent2 = Entry()
         self.ent3 = Entry()
-        self.tx = Text(win1)
+
         lab1 = Label(win1, text="Name")
         lab2 = Label(win1, text="Nb player per table")
+        lab3 = Label(win1, textvariable=self.time_str, font=self.label_font, bg='white',
+                     fg='blue', relief='raised', bd=3)
+
         but1 = Button(win1, text="Add player", command=lambda: player.add_player(self.tx, self.ent1))
         but2 = Button(win1, text="Delete all", command=lambda: player.del_all_text())
         but3 = Button(win1, text="Create Table", command=lambda: player.create_table())
+        self.but4 = Button(win1, text="Start", command=lambda: MyTymer.start_timer(int(self.ent3.get())*1))
+        #but4 = Button(win1, text="Start", command=lambda: MyTymer.start_timer(1800))
+        but5 = Button(win1, text="Pause", command=lambda: MyTymer.pause_timer())
+        but6 = Button(win1, text="Resume", command=lambda: MyTymer.resume_timer())
+
         lab1.grid(row=0, column=0, stick=E)
-        self.ent1.grid(row=0, column=1, padx=5, sticky=W)
+        lab2.grid(row=3, column=0, sticky=E)
+        #lab3.grid(row=5, rowspan=3, padx=5, pady=5)
+        lab3.grid(row=1, column=4, rowspan=4, columnspan=4, padx=5, pady=5)
+
         but1.grid(row=0, column=2, padx=5, sticky=W)
         but2.grid(row=0, column=3, rowspan=4, padx=10, ipady=10, ipadx=20, sticky=W)
-        self.ent3.grid(row=3, column=1, padx=5, sticky=W )
-        lab2.grid(row=3, column=0, sticky=E)
         but3.grid(row=3, column=2, sticky=W)
-        self.tx.grid(row=4, column=0, columnspan=4)
+        self.but4.grid(row=5, column=5)
+        but5.grid(row=5, column=6)
+        but6.grid(row=5, column=7)
+
+        self.ent1.grid(row=0, column=1, padx=5, sticky=W)
+        self.ent2.grid(row=3, column=1, padx=5, sticky=W)
+        self.ent3.grid(row=5, column=4)
+
         #print("loop")
 
 player = Player()
-
+xtimer = MyTymer()
 win1 = Tk()
 app = App(win1)
 win1.mainloop()
