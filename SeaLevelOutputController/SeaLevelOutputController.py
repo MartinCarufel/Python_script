@@ -2,13 +2,13 @@ import sys
 import os
 from time import sleep
 # sys.path.append(r'C:\Python24\Lib')
-sys.path.append(r'C:\Users\martin.carufel\AppData\Local\Programs\Python\Python37-32\Lib\site-packages')
+# sys.path.append(r'C:\Users\martin.carufel\AppData\Local\Programs\Python\Python37-32\Lib\site-packages')
 sys.path.append('C:/Drive-W/Internal_tools/Libraries/IOLibrary/trunk/out')
 from IOWrapper import IOWrapper
 import clr
 clr.AddReference("System.Drawing")
 clr.AddReference("System.Windows.Forms")
-from System.Drawing import Point, Size
+from System.Drawing import Point, Size, Icon
 from System.Windows.Forms import Application, Button, Form, Label
 import buttonLib
 
@@ -19,6 +19,7 @@ class HelloWorldForm(Form):
 
     def __init__(self):
         self.Text = '8224 controler'
+        self.Icon = Icon("hnet.com-image.ico")
         self.Size = Size(350,700)
 
         B0 = buttonLib.ButtonLib('Ignition', posX=10, posY=10, linkedOutput='ignition')
@@ -58,7 +59,7 @@ class HelloWorldForm(Form):
         b9 = B9.create_button()
         self.Controls.Add(b9)
 
-        B10 = buttonLib.ButtonLib('Out 11', posX=10, posY=410, linkedOutput='out11')
+        B10 = buttonLib.ButtonLib('Out11', posX=10, posY=410, linkedOutput='out11')
         b10 = B10.create_button()
         self.Controls.Add(b10)
 
