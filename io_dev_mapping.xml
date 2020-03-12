@@ -1,11 +1,10 @@
 <Map>
   <Devices>
   <Device model="8227" deviceNo="3">
-  	  <Port name="hhu_led_unlock" type="ADC" portNo="12" comment="HHU LED Unlock" />
-      <Port name="hhu_led_lock" type="ADC" portNo="13" comment="HHU LED lock" />
-      <Port name="hhu_led_start" type="ADC" portNo="14" comment="HHU LED start" />
-      <Port name="hhu_led_aux" type="ADC" portNo="15" comment="HHU LED aux" />
-	  
+	  <Port name="IVU_lock" type="DigitalOutput" portNo="1" comment="blue-IVU_lock" negateValue="false" />
+	  <Port name="IVU_unlock" type="DigitalOutput" portNo="2" comment="yellow/black-IVU_start" negateValue="false" />
+	  <Port name="IVU_aux" type="DigitalOutput" portNo="3" comment="yellow/black-IVU_start" negateValue="false" />
+	  <Port name="IVU_start" type="DigitalOutput" portNo="2" comment="yellow/black-IVU_start" negateValue="false" />
     </Device>
   
     <Device model="8224" deviceNo="2">
@@ -19,29 +18,15 @@
       <Port name="trunk" type="DigitalOutput" portNo="7" comment="19/22-Blue (-) Trunk Sense Input" negateValue="false" />
       <Port name="door" type="DigitalOutput" portNo="8" comment="20/22-Green (-) Door Sense Input" negateValue="false" />
       <Port name="hood" type="DigitalOutput" portNo="9" comment="21/22-Gray (-) Hood Pin input" negateValue="false" />
-      <Port name="out11" type="DigitalOutput" portNo="10" comment="" negateValue="false" />
-      <Port name="out12" type="DigitalOutput" portNo="11" comment="" negateValue="false" />
-      <Port name="out13" type="DigitalOutput" portNo="12" comment="" negateValue="false" />
-      <Port name="out14" type="DigitalOutput" portNo="13" comment="" negateValue="false" />
-	  <Port name="d2d_pwr_on" type="DigitalOutput" portNo="14" comment="d2d_pwr_on" negateValue="false"/>
+      <Port name="oldIVU_start_stop" type="DigitalOutput" portNo="11" comment="IVU_start_stop" negateValue="false" />
+	  <Port name="oldIVU_unlock" type="DigitalOutput" portNo="12" comment="IVU_unlock" negateValue="false" />
+	  <Port name="oldIVU_lock" type="DigitalOutput" portNo="13" comment="IVU_lock" negateValue="false"/>
+	  <Port name="oldIVU_trunk" type="DigitalOutput" portNo="14" comment="IVU_trunk" negateValue="false"/>
 	  <Port name="DS4_pwr_off" type="DigitalOutput" portNo="15" comment="DS4_pwr_off" negateValue="false"/>
-      <Port name="out17" type="DigitalOutput" portNo="16" comment="" negateValue="false" />
-      <Port name="out18" type="DigitalOutput" portNo="17" comment="" negateValue="false" />
-      <Port name="out19" type="DigitalOutput" portNo="18" comment="" negateValue="false" />
-      <Port name="out20" type="DigitalOutput" portNo="19" comment="" negateValue="false" />
-      <Port name="out21" type="DigitalOutput" portNo="20" comment="" negateValue="false" />
-      <Port name="out22" type="DigitalOutput" portNo="21" comment="" negateValue="false" />
-      <Port name="out23" type="DigitalOutput" portNo="22" comment="" negateValue="false" />
-      <Port name="out24" type="DigitalOutput" portNo="23" comment="" negateValue="false" />
-	  <Port name="IVU_unlock" type="DigitalOutput" portNo="24" comment="Blue/red-IVU_unlock" negateValue="false" />
-	  <Port name="IVU_lock" type="DigitalOutput" portNo="25" comment="Green/blackIVU_lock" negateValue="false" />
-	  <Port name="IVU_start" type="DigitalOutput" portNo="26" comment="brown-IVU_start" negateValue="false" />
-	  <Port name="IVU_aux" type="DigitalOutput" portNo="27" comment="brown-IVU_aux" negateValue="false" />
-      <Port name="out29" type="DigitalOutput" portNo="28" comment="" negateValue="false" />
-      <Port name="out30" type="DigitalOutput" portNo="29" comment="" negateValue="false" />
-      <Port name="out31" type="DigitalOutput" portNo="30" comment="" negateValue="false" />
-      <Port name="out32" type="DigitalOutput" portNo="31" comment="" negateValue="false" />
-
+	  <Port name="d2d_pwr_on" type="DigitalOutput" portNo="27" comment="d2d_pwr_on" negateValue="false"/>
+	  <Port name="IVU_6166_unlock" type="DigitalOutput" portNo="20" comment="Blue/red-IVU_6166_unlock" negateValue="false" />
+	  <Port name="IVU_6166_lock" type="DigitalOutput" portNo="21" comment="Green/blackIVU_6166_lock" negateValue="false" />
+	  <Port name="IVU_6166_start" type="DigitalOutput" portNo="22" comment="brown-IVU_6166_start" negateValue="false" />
     </Device>
     
     <Device model="8223" deviceNo="1">
@@ -64,12 +49,21 @@
       <Port name="starter" type="DigitalInput" portNo="18" comment="7/10-Violet Selectable Starter Output" negateValue="false" />
       <Port name="accessory" type="DigitalInput" portNo="17" comment="8/10-Orange Selectable Accessory Output" negateValue="false" />
       <Port name="ignition_out" type="DigitalInput" portNo="16" comment="10/10-Pink (+) Ignition Output" negateValue="false" />
+      <Port name="ds4_led_red" type="DigitalInput" portNo="25" comment="pink-pink to Green/White (+) DS4 LED Red" negateValue="true" />
+      <Port name="ds4_led_green" type="DigitalInput" portNo="24" comment="green-green to Green/Black (+) DS4 LED Green" negateValue="true" />
+      <Port name="ds4_led_blue" type="DigitalInput" portNo="26" comment="blue-blue to White/Purple (+) DS4 LED Blue" negateValue="true" />
     </Device>
     
     <Device model="ArduinoTach" deviceNo="0">
-      <Port name="tach" type="FreqOut" portNo="0" />
+      <Port name="tack" type="FreqOut" portNo="0" />
     </Device>
   </Devices>
-  
+  <Groups>
+    <Group name="ds4_leds">
+      <Port name="ds4_led_red" bitNo="0" />
+      <Port name="ds4_led_green" bitNo="1" />
+      <Port name="ds4_led_blue" bitNo="2" />
+    </Group>
+  </Groups>
   <BoolAnalogs />
 </Map>

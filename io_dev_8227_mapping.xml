@@ -1,0 +1,10 @@
+<Map>
+  <Devices>
+  <Device model="8227" deviceNo="3">
+	  <Port name="IVU_lock" type="DigitalOutput" portNo="1" comment="" negateValue="false" />
+	  <Port name="IVU_unlock" type="DigitalOutput" portNo="2" comment="" negateValue="false" />
+	  <Port name="IVU_aux" type="DigitalOutput" portNo="3" comment="" negateValue="false" />
+	  <Port name="IVU_start" type="DigitalOutput" portNo="4" comment="" negateValue="false" />
+    </Device>
+  </Devices>
+'</Map>
